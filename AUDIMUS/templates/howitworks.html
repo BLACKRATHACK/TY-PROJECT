@@ -1,0 +1,550 @@
+<!DOCTYPE>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <title>How It Works</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    crossorigin="anonymous">
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    background-color: #ebf0f4
+  }
+
+
+  .light {
+    --mainColor: #0b5ce9;
+    /*color of signup and getstarted button*/
+    --hoverColor: #28acd8;
+    /*hovering color of navbars, signup and get started button*/
+    --backgroundColor: #ebf0f4;
+    /*wholepage color*/
+    --darkOne: #312f3a;
+    /*color of welcome...*/
+    --darkTwo: #45424b;
+    /*color of mode change symbol*/
+    --lightOne: #4f4545;
+    /*color of statements below welcome...*/
+    --lightTwo: #aaa;
+    /*color of navbar*/
+  }
+
+
+  .dark {
+    --mainColor: #4481eb;
+    /*color of signup and getstarted button*/
+    --hoverColor: #04befe;
+    /*hovering color of navbars, signup and get started button*/
+    --backgroundColor: #192e3a;
+    /*wholepage color*/
+    --darkOne: #f3f3f3;
+    /*color of welcome...*/
+    --darkTwo: #fff;
+    /*color of mode change symbol*/
+    --lightOne: #ccc;
+    /*color of statements below welcome...*/
+    --lightTwo: #e7e3e3;
+    /*color of navbar*/
+  }
+
+
+  .big-wrapper {
+    /*whole page*/
+    position: relative;
+    padding: 1.7rem 0 2rem;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: var(--backgroundColor);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .logo {
+    /*when the mouse hover on logo it will show🚫 which means that element is not clickable*/
+    display: flex;
+    align-items: center;
+    cursor: not-allowed;
+    margin-left: 105px;
+  }
+
+
+  .logo img {
+    /*size properties of logo*/
+    width: 200px;
+    margin-right: 9.6rem;
+    margin-top: -0.6rem;
+  }
+
+
+  .logo h3 {
+    /*since our logo is an image it wont affect it if its a text then it would change when mode is changed*/
+    color: var(--darkTwo);
+    font-size: 1.55rem;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+
+  .container {
+    /*of navbar,welc...,everything*/
+    position: relative;
+    max-width: 810rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 3rem;
+    z-index: 10;
+  }
+
+
+  .links ul {
+    /*bullet point on navbar*/
+    display: flex;
+    list-style: none;
+    align-items: center;
+  }
+
+
+  .links a {
+    color: var(--lightOne);
+    /*navbar links*/
+    margin-left: 3.5rem;
+    /*spacing from signup btn*/
+    display: inline-block;
+    transition: 0.3s;
+  }
+
+
+  .links a:hover {
+    /*navbar hovering effects*/
+    color: var(--hoverColor);
+    transform: scale(1.3);
+  }
+
+  .links a:hover {
+    /*navbar hovering effects*/
+    color: var(--hoverColor);
+    transform: scale(1.3);
+  }
+
+  .links .active {
+    /*navbar hovering effects*/
+    display: inline-block;
+    padding: 0.5rem 1.9rem;
+    background: transparent;
+    border-radius: 8rem;
+    border-width: 2px;
+    border-style: dashed;
+  }
+
+
+  .contact-wrap {
+    padding-top: 15px;
+    width: 80%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+
+  .contact-in {
+    padding: 40px 30px;
+  }
+
+
+  .contact-in:nth-child(1) {
+    flex: 22%;
+    background: linear-gradient(to right, #28acd8, #0b5ce9);
+    color: #fff;
+  }
+
+
+  .contact-in:nth-child(2) {
+    flex: 10%;
+    background: linear-gradient(to left, #28acd8, #0b5ce9);
+  }
+
+
+  .contact-in p {
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+
+  .contact-in-btn {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #fff;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+  }
+
+
+  .btn {
+    /* get started and signup btn*/
+    display: inline-block;
+    padding: 0.9rem 1.9rem;
+    color: #fff !important;
+    background-color: #0b5ce9;
+    border-radius: 16px;
+    text-transform: capitalize;
+    transition: 0.3s;
+  }
+
+
+  .btn:hover {
+    /*hovering feature of signup btn*/
+    background-color: #04befe;
+    transform: scale(1.1) !important;
+  }
+
+
+  .copy {
+    /* change from light to dark mode*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    animation: appear 1.2s 1 both;
+  }
+
+
+  @keyframes appear {
+    0% {
+      clip-path: circle(30% at -25% -25%);
+    }
+
+    100% {
+      clip-path: circle(150% at 0 0);
+    }
+  }
+
+
+  .bottom-area {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    text-align: left;
+    margin-left: 45px;
+    z-index: 10;
+  }
+
+
+  .toggle-btn {
+    /*mode changing btn*/
+    display: inline-block;
+    border: none;
+    background: #45424b;
+    color: #ebeef0;
+    outline: none;
+    cursor: pointer;
+    height: 39px;
+    width: 39px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    transition: 0.3s;
+  }
+
+
+  .toggle-btn i {
+    /*moon pic*/
+    line-height: 39px;
+  }
+
+
+  .toggle-btn i:last-child {
+    display: none;
+  }
+
+
+  .toggle-btn:hover {
+    /*hovering on mode btn*/
+    background: #28acd8;
+  }
+
+
+  .big-wrapper.light .toggle-btn i:first-child {
+    display: block;
+  }
+
+
+  .big-wrapper.dark .toggle-btn i:last-child {
+    display: block;
+  }
+
+
+  .big-wrapper.dark .toggle-btn i:first-child {
+    display: none;
+  }
+
+  .shape {
+    width: 27rem;
+  }
+
+
+  .section {
+    background-color: #0b5ce9;
+  }
+
+
+
+
+  .counters {
+    background: transparent;
+    color: #fff;
+    padding: 20px 12px;
+    border: 2px lightskyblue solid;
+  }
+
+
+  .counters .container1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 100px;
+    text-align: center;
+  }
+
+
+  .counters i {
+    color: lightskyblue;
+    margin-bottom: 5px;
+  }
+
+
+  .counters .counter {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+
+
+  @media (max-width:70px) {
+    .counters .container1 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .counters .container1>div:nth-of-type(1),
+    .counters .container1>div:nth-of-type(2) {
+      border-bottom: 1px lightskyblue solid;
+      padding-bottom: 5px;
+    }
+  }
+
+  .container1 {
+    max-width: 80px;
+    margin: 0;
+    overflow: 0;
+  }
+</style>
+
+<body>
+  <main>
+    <div class="big-wrapper light">
+      <header>
+        <div class="container">
+          <div class="logo">
+            <img src="{% static 'img/logo1.png'%}" alt="Logo">
+
+            <div class="links">
+              <ul>
+                <li class="li"><a href="{% url 'home' %}">Home</a></li>&nbsp
+                <li class="li"><a class="active" href="{% url 'howitworks' %}">How&nbspIt&nbspWorks</a></li>
+                <li class="li"><a href="{% url 'animation' %}">Convertor</a></li>
+                {% if not user.is_authenticated %}
+                <li class="li"><a href="{% url 'contact' %}">Contact</a></li>
+                <li class="li"><a href="{% url 'about' %}">About</a></li>
+                <li><a class="btn" href="{% url 'signup' %}">Signup/Login</a></li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li class="li"><a href="{% url 'logout' %}">Log-Out</a></li>
+                {% else %}
+                <a href="{% url 'login' %}"></a>
+                {% endif %}
+              </ul>
+
+            </div>
+          </div>
+          <div class="contact-wrap">
+            <div class="contact-in">
+              <h3><u><b>How our AUDIMUS works?</b></u></h3>
+              <p class="fst-italic">
+
+              </p>
+              <ul>
+                <li><i class="bi bi-check2-circle"></i>First you need to make an account on AUDIMUS by going to signup
+                  page. For that you need to enter a username and password.</li>
+                <li><i class="bi bi-check2-circle"></i>Next you need to log in with that username and password only then
+                  you'll be directed to the convertor page where the translation is done.</li>
+                <li><i class="bi bi-check2-circle"></i>After being redirected to convertor page you need to add any word
+                  or phrase which you wish to convert in sign language.</li>
+                <li><i class="bi bi-check2-circle"></i>After doing so and clicking on submit button you'll be getting
+                  the desired sign language translation by our animated character on right side of the screen.</li>
+
+              </ul>
+
+
+
+            </div>
+            <!--<div class="contact-in">
+          <img src="{% static 'img/signs.gif' %}" alt="" class="shape">
+        </div>-->
+          </div>
+  </main>
+
+  <main>
+    <div class="bottom-area">
+      <div class="container3">
+        <button class="toggle-btn">
+          <i class="fa-solid fa-moon"></i>
+          <i class="fa-solid fa-sun"></i>
+        </button>
+      </div>
+    </div>
+  </main>
+  <!-- JavaScript Files -->
+
+
+  <script src="https://kit.fontawesome.com/c49142507c.js"></script>
+  <script>// Select The Elements
+    var toggle_btn;
+    var big_wrapper;
+    var hamburger_menu;
+
+    function declare() {
+      toggle_btn = document.querySelector(".toggle-btn");
+      big_wrapper = document.querySelector(".big-wrapper");
+      hamburger_menu = document.querySelector(".hamburger-menu");
+    }
+
+    const main = document.querySelector("main");
+
+    declare();
+
+    let dark = false;
+
+    function toggleAnimation() {
+      // Clone the wrapper
+      dark = !dark;
+      let clone = big_wrapper.cloneNode(true);
+      if (dark) {
+        clone.classList.remove("light");
+        clone.classList.add("dark");
+      } else {
+        clone.classList.remove("dark");
+        clone.classList.add("light");
+      }
+      clone.classList.add("copy");
+      main.appendChild(clone);
+
+      document.body.classList.add("stop-scrolling");
+
+      clone.addEventListener("animationend", () => {
+        document.body.classList.remove("stop-scrolling");
+        big_wrapper.remove();
+        clone.classList.remove("copy");
+        // Reset Variables
+        declare();
+        events();
+      });
+    }
+
+    function events() {
+      toggle_btn.addEventListener("click", toggleAnimation);
+      hamburger_menu.addEventListener("click", () => {
+        big_wrapper.classList.toggle("active");
+      });
+    }
+
+    events();</script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      function counter(id, start, end, duration) {
+        let obj = document.getElementById(id),
+          current = start,
+          range = end - start,
+          increment = end > start ? 1 : -1,
+          step = Math.abs(Math.floor(duration / range)),
+          timer = setInterval(() => {
+            current += increment;
+            obj.textContent = current;
+            if (current == end) {
+              clearInterval(timer);
+            }
+          }, step);
+      }
+      counter("count1", 0, 400, 3000);
+      counter("count2", 100, 50, 2500);
+      counter("count3", 0, 40, 3000);
+    });
+
+
+  </script>
+
+
+  <script>
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200; // The lower the slower
+
+
+    counters.forEach(counter => {
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+
+
+        // Lower inc to slow and higher to slow
+        const inc = target / speed;
+
+
+        // console.log(inc);
+        // console.log(count);
+
+
+        // Check if target is reached
+        if (count < target) {
+          // Add inc to count and output in counter
+          counter.innerText = count + inc;
+          // Call function every ms
+          setTimeout(updateCount, 1);
+        } else {
+          counter.innerText = target;
+        }
+      };
+
+
+      updateCount();
+    });
+
+
+  </script>
+
+
+</body>
+
+</html>

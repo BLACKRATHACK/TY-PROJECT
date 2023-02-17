@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audimus</title>
+</head>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+  .light {
+    --mainColor: #0b5ce9;
+    /*color of signup and getstarted button*/
+    --hoverColor: #28acd8;
+    /*hovering color of navbars, signup and get started button*/
+    --backgroundColor: #ebf0f4;
+    /*wholepage color*/
+    --darkOne: #312f3a;
+    /*color of welcome...*/
+    --darkTwo: #45424b;
+    /*color of mode change symbol*/
+    --lightOne: #4f4545;
+    /*color of statements below welcome...*/
+    --lightTwo: #aaa;
+    /*color of navbar*/
+  }
+
+  .dark {
+    --mainColor: #4481eb;
+    /*color of signup and getstarted button*/
+    --hoverColor: #04befe;
+    /*hovering color of navbars, signup and get started button*/
+    --backgroundColor: #192e3a;
+    /*wholepage color*/
+    --darkOne: #f3f3f3;
+    /*color of welcome...*/
+    --darkTwo: #fff;
+    /*color of mode change symbol*/
+    --lightOne: #ccc;
+    /*color of statements below welcome...*/
+    --lightTwo: #e7e3e3;
+    /*color of navbar*/
+  }
+
+  *,
+  *::before,
+  *::after {
+    /*page box in which everything is there*/
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+  }
+
+  body {
+    font-family: "Poppins", sans-serif;
+    /*font type of all content*/
+  }
+
+  .stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  a {
+    text-decoration: inline;
+    /*navbar ,getstarted,signup...*/
+  }
+
+  .big-wrapper {
+    /*whole page*/
+    position: relative;
+    padding: 1.7rem 0 2rem;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: var(--backgroundColor);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .container {
+    /*of navbar,welc...,everything*/
+    position: relative;
+    max-width: 81rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 3rem;
+    z-index: 10;
+  }
+
+  header {
+    /*full navigation bar*/
+    position: relative;
+    z-index: 70;
+  }
+
+  header .container {
+    /*just starting from logo till signupnavigation section*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .logo {
+    /*when the mouse hover on logo it will show🚫 which means that element is not clickable*/
+    display: flex;
+    align-items: center;
+    cursor: not-allowed;
+  }
+
+  .logo img {
+    /*size properties of logo*/
+    width: 200px;
+    margin-right: 0.6rem;
+    margin-top: -0.6rem;
+  }
+
+  .logo h3 {
+    /*since our logo is an image it wont affect it if its a text then it would change when mode is changed*/
+    color: var(--darkTwo);
+    font-size: 1.55rem;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .links ul {
+    /*bullet point on navbar*/
+    display: flex;
+    list-style: none;
+    align-items: center;
+  }
+
+  .links a {
+    color: var(--lightOne);
+    /*navbar links*/
+    margin-left: 4.5rem;
+    /*spacing from signup btn*/
+    display: inline-block;
+    transition: 0.3s;
+  }
+
+  .links a:hover {
+    /*navbar hovering effects*/
+    color: var(--hoverColor);
+    transform: scale(1.3);
+  }
+
+  .links a:hover {
+    /*navbar hovering effects*/
+    color: var(--hoverColor);
+    transform: scale(1.3);
+  }
+
+  .links .active {
+    /*navbar hovering effects*/
+    display: inline-block;
+    padding: 0.5rem 1.9rem;
+    background: transparent;
+    border-radius: 8rem;
+    border-width: 2px;
+    border-style: dashed;
+  }
+
+  .btn {
+    /* get started and signup btn*/
+    display: inline-block;
+    padding: 0.9rem 1.9rem;
+    color: #fff !important;
+    background-color: var(--mainColor);
+    border-radius: 16px;
+    text-transform: capitalize;
+    transition: 0.3s;
+  }
+
+  .btn:hover {
+    /*hovering feature of get started and signup btn*/
+    background-color: var(--hoverColor);
+    transform: scale(1.1) !important;
+  }
+
+  .hamburger-menu {
+    /*when the screen size is reduced the navbars gets converted to a menu*/
+    position: relative;
+    z-index: 99;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    display: none;
+  }
+
+  .hamburger-menu .bar {
+    /*middle line of menu bar*/
+    position: relative;
+    width: 100%;
+    height: 3px;
+    background-color: var(--mainColor);
+    border-radius: 3px;
+    transition: 0.5s;
+  }
+
+  .bar::before,
+  .bar::after {
+    /*first and third lines and cross of menu*/
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--darkTwo);
+    border-radius: 3px;
+    transition: 0.5s;
+  }
+
+  .bar::before {
+    /*first line of menu*/
+    transform: translateY(-8px);
+  }
+
+  .bar::after {
+    transform: translateY(8px);
+  }
+
+  .big-wrapper.active .hamburger-menu .bar {
+    /* middle line on cross in menu*/
+    background-color: transparent;
+  }
+
+  .big-wrapper.active .bar::before {
+    /*angle of cross's first line*/
+    transform: translateY(0) rotate(-45deg);
+  }
+
+  .big-wrapper.active .bar::after {
+    /*angle of cross's second line*/
+    transform: translateY(0) rotate(45deg);
+  }
+
+  .showcase-area .container {
+    /*box consisting welcome,get started  and image part*/
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .big-title {
+    /*gap btwn welcome and audimus*/
+    font-size: 1.4rem;
+    color: var(--darkOne);
+    text-transform: capitalize;
+    line-height: 1.4;
+  }
+
+  .text {
+    /*paragraph after welcome...*/
+    color: var(--lightOne);
+    font-size: 1.1rem;
+    margin: 1.9rem 0 2.5rem;
+    max-width: 600px;
+    line-height: 2.3;
+  }
+
+  .showcase-area .btn {
+    /*shadow around get started*/
+    box-shadow: 0 0 40px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .sign {
+    /*sign image*/
+    width: 500px;
+    transform: translate(15%, 25px);
+  }
+
+  .toggle-btn {
+    /*mode changing btn*/
+    display: inline-block;
+    border: none;
+    background: var(--darkTwo);
+    color: var(--backgroundColor);
+    outline: none;
+    cursor: pointer;
+    height: 39px;
+    width: 39px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    transition: 0.3s;
+  }
+
+  .toggle-btn i {
+    /*moon pic*/
+    line-height: 39px;
+  }
+
+  .toggle-btn:hover {
+    /*hovering on mode btn*/
+    background: var(--hoverColor);
+  }
+
+  .big-wrapper.light .toggle-btn i:last-child {
+    display: none;
+  }
+
+  .big-wrapper.light .toggle-btn i:first-child {
+    display: block;
+  }
+
+  .big-wrapper.dark .toggle-btn i:last-child {
+    display: block;
+  }
+
+  .big-wrapper.dark .toggle-btn i:first-child {
+    display: none;
+  }
+
+  .shape {
+    /*shape near get started btn*/
+    position: absolute;
+    z-index: 0;
+    width: 500px;
+    bottom: -180px;
+    left: -15px;
+    opacity: 0.5;
+  }
+
+  .copy {
+    /* change from light to dark mode*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    animation: appear 1.2s 1 both;
+  }
+
+  @keyframes appear {
+    0% {
+      clip-path: circle(30% at -25% -25%);
+    }
+
+    100% {
+      clip-path: circle(150% at 0 0);
+    }
+  }
+
+  @media screen and (max-width: 870px) {
+
+    /*mobile screen size */
+    .hamburger-menu {
+      display: flex;
+    }
+
+    .links {
+      /*mobile reduced navbar i.e menu */
+      position: fixed;
+      top: 0;
+      right: 0;
+      max-width: 350px;
+      width: 100%;
+      height: 100%;
+      background-color: var(--mainColor);
+      z-index: 95;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translateX(100%);
+      transition: 0.5s;
+    }
+
+    .links ul {
+      flex-direction: column;
+    }
+
+    .links a {
+      /*color of navlinks in menu*/
+      color: #fff;
+      margin-left: 0;
+      padding: 2rem 0;
+    }
+
+    .links .btn {
+      /*signup btn in menu*/
+      background: none;
+    }
+
+    .overlay {
+      /*shadow when the clicked on menu bar*/
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.5s;
+    }
+
+    .big-wrapper.active .links {
+      transform: translateX(0);
+      box-shadow: 0 0 50px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .big-wrapper.active .overlay {
+      pointer-events: all;
+      opacity: 1;
+    }
+
+    .showcase-area {
+      padding: 2.5rem 0;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .showcase-area .container {
+      grid-template-columns: 1fr;
+      justify-content: center;
+      grid-gap: 2rem;
+    }
+
+    .big-title {
+      font-size: 1.1rem;
+    }
+
+    .text {
+      font-size: 0.95rem;
+      margin: 1.4rem 0 1.5rem;
+    }
+
+    .sign {
+      width: 100%;
+      transform: none;
+    }
+
+    .logo h3 {
+      font-size: 1.25rem;
+    }
+
+    .shape {
+      bottom: -180px;
+      left: -150px;
+    }
+  }
+
+  @media screen and (max-width: 470px) {
+    .container {
+      padding: 0 1.5rem;
+    }
+
+    .big-title {
+      font-size: 0.9rem;
+    }
+
+    .text {
+      margin: 1.1rem 0 1.5rem;
+    }
+
+    .showcase-area .btn {
+      font-size: 0.8rem;
+    }
+  }
+
+  /* === removing default button1 style ===*/
+  .button1 {
+    margin: 0;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    border: none;
+  }
+
+  /* button1 styling */
+  .button1 {
+    --border-right: 6px;
+    --text-stroke-color: var(--hoverColor);
+    --animation-color: var(--darkOne);
+    --fs-size: 2em;
+    letter-spacing: 3px;
+    text-decoration: none;
+    font-size: 43px;
+    font-family: "Arial";
+    position: relative;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-stroke-color);
+  }
+
+  /*this is the text, when you hover on button1*/
+  .hover-text {
+    position: absolute;
+    box-sizing: border-box;
+    content: attr(data-text);
+    color: var(--animation-color);
+    width: 0%;
+    inset: 0;
+    border-right: var(--border-right) solid var(--animation-color);
+    overflow: hidden;
+    transition: 0.5s;
+    -webkit-text-stroke: 1px var(--animation-color);
+  }
+
+  /* hover */
+  .button1:hover .hover-text {
+    width: 100%;
+    filter: drop-shadow(0 0 23px var(--animation-color))
+  }
+</style>
+</head>
+
+<body>
+  <main>
+    <div class="big-wrapper light">
+      <img src="{% static 'img/shape.png' %}" alt="" class="shape">
+
+      <header>
+        <div class="container">
+          <div class="logo">
+            <img src="{% static 'img/logo1.png'%}" alt="Logo">
+
+          </div>
+
+          <div class="links">
+            <ul>
+              <li class="li"><a class="active" href="{% url 'home' %}">Home</a></li>&nbsp
+              <li class="li"><a href="{% url 'howitworks' %}">How&nbspIt&nbspWorks</a></li>
+              <li class="li"><a href="{% url 'animation' %}">Convertor</a></li>
+              {% if not user.is_authenticated %}
+              <li class="li"><a href="{% url 'contact' %}">Contact</a></li>
+              <li class="li"><a href="{% url 'about' %}">About</a></li>
+              <li><a class="btn" href="{% url 'signup' %}">Signup/Login</a></li>
+              {% endif %}
+              {% if user.is_authenticated %}
+              <li class="li"><a href="{% url 'logout' %}">Log-Out</a></li>
+              {% else %}
+              <a href="{% url 'login' %}"></a>
+              {% endif %}
+            </ul>
+
+
+            </ul>
+
+          </div>
+
+
+          <div class="overlay"></div>
+
+          <div class="hamburger-menu">
+            <div class="bar"></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="showcase-area">
+        <div class="container">
+          <div class="left">
+            <div class="big-title">
+              <button1 data-text="Awesome" class="button1">
+                <span class="actual-text">&nbsp;Welcome to audimus &nbsp;</span>
+                <span class="hover-text" aria-hidden="true">&nbsp;Welcome to audimus&nbsp;</span>
+              </button1>
+            </div>
+            <p class="text">
+              There are 300+ sign languages and to understand them all is a tedious task hence our "Audimus" came into
+            </p>
+            <div class="cta">
+              <a href="howitworks.html" class="btn">Get started</a>
+            </div>
+          </div>
+
+          <div class="right">
+            <img src="{% static 'img\signl.gif' %}" alt="sign Language" class="sign" />
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-area">
+        <div class="container">
+          <button class="toggle-btn">
+            <i class="far fa-moon"></i>
+            <i class="far fa-sun"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- JavaScript Files -->
+
+  <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+  <script>// Select The Elements
+    var toggle_btn;
+    var big_wrapper;
+    var hamburger_menu;
+
+    function declare() {
+      toggle_btn = document.querySelector(".toggle-btn");
+      big_wrapper = document.querySelector(".big-wrapper");
+      hamburger_menu = document.querySelector(".hamburger-menu");
+    }
+
+    const main = document.querySelector("main");
+
+    declare();
+
+    let dark = false;
+
+    function toggleAnimation() {
+      // Clone the wrapper
+      dark = !dark;
+      let clone = big_wrapper.cloneNode(true);
+      if (dark) {
+        clone.classList.remove("light");
+        clone.classList.add("dark");
+      } else {
+        clone.classList.remove("dark");
+        clone.classList.add("light");
+      }
+      clone.classList.add("copy");
+      main.appendChild(clone);
+
+      document.body.classList.add("stop-scrolling");
+
+      clone.addEventListener("animationend", () => {
+        document.body.classList.remove("stop-scrolling");
+        big_wrapper.remove();
+        clone.classList.remove("copy");
+        // Reset Variables
+        declare();
+        events();
+      });
+    }
+
+    function events() {
+      toggle_btn.addEventListener("click", toggleAnimation);
+      hamburger_menu.addEventListener("click", () => {
+        big_wrapper.classList.toggle("active");
+      });
+    }
+
+    events();</script>
+</body>
+
+</html>

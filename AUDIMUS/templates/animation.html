@@ -1,0 +1,593 @@
+<!DOCTYPE>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Convertor</title>
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+  *,
+  *::before,
+  *::after {
+    /*page box in which everything is there*/
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    background-color: #ebf0f4
+  }
+
+  .light {
+    --mainColor: #0b5ce9;
+    /*color of signup and getstarted button*/
+    --hoverColor: #28acd8;
+    /*hovering color of navbars, signup and get started button*/
+    --backgroundColor: #ebf0f4;
+    /*wholepage color*/
+    --darkOne: #312f3a;
+    /*color of welcome...*/
+    --darkTwo: #45424b;
+    /*color of mode change symbol*/
+    --lightOne: #4f4545;
+    /*color of statements below welcome...*/
+    --lightTwo: #aaa;
+    /*color of navbar*/
+  }
+
+  .dark {
+    --mainColor: #4481eb;
+    /*color of signup and getstarted button*/
+    --hoverColor: #04befe;
+    /*hovering color of navbars, signup and get started button*/
+    --backgroundColor: #192e3a;
+    /*wholepage color*/
+    --darkOne: #f3f3f3;
+    /*color of welcome...*/
+    --darkTwo: #fff;
+    /*color of mode change symbol*/
+    --lightOne: #ccc;
+    /*color of statements below welcome...*/
+    --lightTwo: #e7e3e3;
+    /*color of navbar*/
+  }
+
+  .big-wrapper {
+    /*whole page*/
+    position: relative;
+    padding: 1.7rem 0 2rem;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: var(--backgroundColor);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .logo {
+    /*when the mouse hover on logo it will show🚫 which means that element is not clickable*/
+    display: flex;
+    align-items: center;
+    cursor: not-allowed;
+    margin-left: 125px;
+  }
+
+  .logo img {
+    /*size properties of logo*/
+    width: 200px;
+    margin-right: 9.6rem;
+    margin-top: -0.6rem;
+  }
+
+  .logo h3 {
+    /*since our logo is an image it wont affect it if its a text then it would change when mode is changed*/
+    color: var(--darkTwo);
+    font-size: 1.55rem;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .container {
+    /*of navbar,welc...,everything*/
+    position: relative;
+    max-width: 810rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 3rem;
+    z-index: 10;
+  }
+
+  .links ul {
+    /*bullet point on navbar*/
+    display: flex;
+    list-style: none;
+    align-items: center;
+  }
+
+  .links a {
+    color: #4f4545;
+    /*navbar links*/
+    margin-left: 3.5rem;
+    /*spacing from signup btn*/
+    display: inline-block;
+    transition: 0.3s;
+  }
+
+  .links a:hover {
+    /*navbar hovering effects*/
+    color: var(--hoverColor);
+    transform: scale(1.3);
+  }
+
+  .links a:hover {
+    /*navbar hovering effects*/
+    color: var(--hoverColor);
+    transform: scale(1.3);
+  }
+
+  .links .active {
+    /*navbar hovering effects*/
+    display: inline-block;
+    padding: 0.5rem 1.9rem;
+    background: transparent;
+    border-radius: 8rem;
+    border-width: 2px;
+    border-style: dashed;
+  }
+
+  .contact-wrap {
+    padding-top: 40px;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .contact-in:nth-child(1) {
+    flex: 30%;
+  }
+
+  .contact-in:nth-child(2) {
+    flex: 50%;
+  }
+
+  .btn {
+    /* get started and signup btn*/
+    display: inline-block;
+    padding: 0.9rem 1.9rem;
+    color: #fff !important;
+    background-color: #0b5ce9;
+    border-radius: 16px;
+    text-transform: capitalize;
+    transition: 0.3s;
+  }
+
+  .btn:hover {
+    /*hovering feature of signup btn*/
+    background-color: #04befe;
+    transform: scale(1.1) !important;
+  }
+
+  .copy {
+    /* change from light to dark mode*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    animation: appear 1.2s 1 both;
+  }
+
+  @keyframes appear {
+    0% {
+      clip-path: circle(30% at -25% -25%);
+    }
+
+    100% {
+      clip-path: circle(150% at 0 0);
+    }
+  }
+
+  .bottom-area {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    text-align: left;
+    margin-left: 45px;
+    z-index: 10;
+  }
+
+  .toggle-btn {
+    /*mode changing btn*/
+    display: inline-block;
+    border: none;
+    background: #45424b;
+    color: #ebeef0;
+    outline: none;
+    cursor: pointer;
+    height: 39px;
+    width: 39px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    transition: 0.3s;
+  }
+
+  .toggle-btn i {
+    /*moon pic*/
+    line-height: 39px;
+  }
+
+  .toggle-btn i:last-child {
+    display: none;
+  }
+
+  .toggle-btn:hover {
+    /*hovering on mode btn*/
+    background: #28acd8;
+  }
+
+  .big-wrapper.light .toggle-btn i:first-child {
+    display: block;
+  }
+
+  .big-wrapper.dark .toggle-btn i:last-child {
+    display: block;
+  }
+
+  .big-wrapper.dark .toggle-btn i:first-child {
+    display: none;
+  }
+
+  .split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 30;
+    overflow-x: hidden;
+    padding-top: 100px;
+
+  }
+
+  .left {
+    /*split border on convertor page*/
+    left: 55;
+    border-right: transparent;
+  }
+
+  .right {
+    /*split border on convertor page*/
+    right: 0;
+    margin-top: 0px;
+    border-left: transparent;
+  }
+
+  .mytext {
+    /*design of textbox on convertor page*/
+    border: 2px solid var(--darkOne);
+    padding: 4px;
+    margin-top: 25px;
+    float: left;
+    height: 32px;
+    overflow: hidden;
+    line-height: 16px;
+    width: 350px;
+    margin-left: 60px;
+    background-color: white;
+  }
+
+  .mic {
+    /*design of background of mic image*/
+    vertical-align: top;
+    padding: 0px;
+    margin-top: 20px;
+    float: left;
+    height: 42px;
+    overflow: hidden;
+    width: 5em;
+    text-align: center;
+    line-height: 16px;
+    background-color: transparent;
+    border: #04befe;
+    size: 100rem;
+  }
+
+  .submit {
+    --color: var(--mainColor);
+    font-family: inherit;
+    display: inline-block;
+    width: 8em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: 700;
+    color: var(--color);
+  }
+
+  .submit:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+  }
+
+  .submit:hover {
+    color: var(--darkOne);
+  }
+
+  .submit:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+  }
+
+  .submit:hover:before {
+    top: -30px;
+    left: -30px;
+  }
+
+  .submit:active:before {
+    background: #3a0ca3;
+    transition: background 0s;
+  }
+
+
+  .td {
+    /*for The text that you entered is:	and Key words in sentence:*/
+    color: var(--darkOne);
+    font-weight: bold;
+    font-size: 20px;
+  }
+</style>
+
+<body>
+  <main>
+    <div class="big-wrapper light">
+      <header>
+        <div class="container">
+          <div class="logo">
+            <img src="{% static 'img/logo1.png'%}" alt="Logo">
+
+            <div class="links">
+              <ul>
+                <li class="li"><a href="{% url 'home' %}">Home</a></li>&nbsp
+                <li class="li"><a href="{% url 'howitworks' %}">How&nbspIt&nbspWorks</a></li>
+                <li class="li"><a class="active" href="{% url 'animation' %}">Convertor</a></li>
+                {% if not user.is_authenticated %}
+                <li class="li"><a href="{% url 'contact' %}">Contact</a></li>
+                <li class="li"><a href="{% url 'about' %}">About</a></li>
+                <li><a class="btn" href="{% url 'signup' %}">Signup/Login</a></li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li class="li"><a href="{% url 'logout' %}">Log-Out</a></li>
+                {% else %}
+                <a href="{% url 'login' %}"></a>
+                {% endif %}
+              </ul>
+
+            </div>
+          </div>
+        </div>
+
+
+        <div class="split left">
+          <h2 style="color:var(--darkOne)" align="center"><u>Enter Text or Use Mic</h2></u>
+          <br>
+          <form action="" method="post" align="left">
+            {% csrf_token %}
+            <input type="text" name="sen" class="mytext" id="speechToText" placeholder="">
+            <button type="button" name="button" class="mic" onclick="record()"><img src="{% static 'img\mic.png' %}"
+                height="35px" width="40px" /></button>
+            <button type="submit" name="submit" class="submit">Submit</button>
+
+          </form>
+          <br>
+          <table cellspacing="20px">
+            <tr>
+              <td class="td">The text that you entered is:</td>
+              <td class="td">{{ text }}</td>
+            </tr>
+            <tr>
+              <td class="td">Key words in sentence:</td>
+              <td class="td">
+                <ul class="td" id="list" align="center">
+                  {% for word in words %}
+                  <li id="{{ i }}" style="margin-right: 8px">{{ word }}</li>
+                  {% endfor %}
+                </ul>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="split right">
+          <h2 style="color:var(--darkOne)" align="center"><u>Sign Language Animation</h2></u>
+
+          <div style="text-align:center"> &nbsp&nbsp
+            <button class="submit" onclick="playPause()">Play/Pause</button>
+            <!--  LETS USE ONLY PLAY PAUSE BUTTON WITH 720 *420 ,IT FITS THE SCREEN ASHISH
+
+  	<button onclick="makeBig()">Big</button>
+  	<button onclick="makeSmall()">Small</button>
+  	<button onclick="makeNormal()">Normal</button>-->
+
+
+            <video id="videoPlayer" width="600" height="350" preload="auto" autoplay>
+              <source src="" type="video/mp4">
+              Your browser does not support HTML5 video.
+            </video>
+          </div>
+        </div>
+    </div>
+
+
+    </div>
+
+    </div>
+
+    </div>
+  </main>
+
+  <main>
+    <div class="bottom-area">
+      <div class="container3">
+        <button class="toggle-btn">
+          <i class="fa-solid fa-moon"></i>
+          <i class="fa-solid fa-sun"></i>
+        </button>
+      </div>
+    </div>
+  </main>
+  <!-- JavaScript Files -->
+
+  <script src="https://kit.fontawesome.com/c49142507c.js"></script>
+  <script>// Select The Elements
+    var toggle_btn;
+    var big_wrapper;
+    var hamburger_menu;
+
+    function declare() {
+      toggle_btn = document.querySelector(".toggle-btn");
+      big_wrapper = document.querySelector(".big-wrapper");
+      hamburger_menu = document.querySelector(".hamburger-menu");
+    }
+
+    const main = document.querySelector("main");
+
+    declare();
+
+    let dark = false;
+
+    function toggleAnimation() {
+      // Clone the wrapper
+      dark = !dark;
+      let clone = big_wrapper.cloneNode(true);
+      if (dark) {
+        clone.classList.remove("light");
+        clone.classList.add("dark");
+      } else {
+        clone.classList.remove("dark");
+        clone.classList.add("light");
+      }
+      clone.classList.add("copy");
+      main.appendChild(clone);
+
+      document.body.classList.add("stop-scrolling");
+
+      clone.addEventListener("animationend", () => {
+        document.body.classList.remove("stop-scrolling");
+        big_wrapper.remove();
+        clone.classList.remove("copy");
+        // Reset Variables
+        declare();
+        events();
+      });
+    }
+
+    function events() {
+      toggle_btn.addEventListener("click", toggleAnimation);
+      hamburger_menu.addEventListener("click", () => {
+        big_wrapper.classList.toggle("active");
+      });
+    }
+
+    events();</script>
+
+  <script>
+    //webkitSpeechRecognition api for speech to text conversion
+    function record() {
+      var recognition = new webkitSpeechRecognition();
+      recognition.lang = 'en-IN';
+
+      recognition.onresult = function (event) {
+        console.log(event)
+        document.getElementById('speechToText').value = event.results[0][0].transcript;
+      }
+      recognition.start();
+    }
+    function play() {
+      var videoSource = new Array();
+      var videos = document.getElementById("list").getElementsByTagName("li");
+      var j;
+      for (j = 0; j < videos.length; j++) {
+        videoSource[j] = "/static/" + videos[j].innerHTML + ".mp4";
+      }
+
+      var i = 0; // define i
+      var videoCount = videoSource.length;
+
+      function videoPlay(videoNum) {
+        document.getElementById("list").getElementsByTagName("li")[videoNum].style.color = "#09edc7";
+        document.getElementById("list").getElementsByTagName("li")[videoNum].style.fontSize = "xx-large";
+        document.getElementById("videoPlayer").setAttribute("src", videoSource[videoNum]);
+        document.getElementById("videoPlayer").load();
+        document.getElementById("videoPlayer").play();
+
+      }
+      document.getElementById('videoPlayer').addEventListener('ended', myHandler, false);
+      document.getElementById("list").getElementsByTagName("li")[0].style.color = "#09edc7";
+      document.getElementById("list").getElementsByTagName("li")[0].style.fontSize = "xx-large";
+
+      videoPlay(0); // play the video
+
+      function myHandler() {
+        document.getElementById("list").getElementsByTagName("li")[i].style.color = "#feda6a";
+        document.getElementById("list").getElementsByTagName("li")[i].style.fontSize = "20px";
+        i++;
+        if (i == videoCount) {
+          document.getElementById("videoPlayer").pause();
+        }
+        else {
+          videoPlay(i);
+        }
+      }
+    }
+    /* LETS USE ONLY PLAY PAUSE BUTTON WITH 720 *420 ,IT FITS THE SCREEN
+    function makeBig() {
+        document.getElementById("videoPlayer").width = 560;
+      document.getElementById("videoPlayer").height = 360;
+    }
+  
+    function makeSmall() {
+        document.getElementById("videoPlayer").width = 320;
+      document.getElementById("videoPlayer").height = 180;
+    }
+  
+    function makeNormal() {
+        document.getElementById("videoPlayer").width = 420;
+      document.getElementById("videoPlayer").height =280;
+    }*/
+    function playPause() {
+      if (document.getElementById("videoPlayer").paused) {
+        play();
+      }
+      else {
+        document.getElementById("videoPlayer").pause();
+      }
+    }
+
+  </script>
+</body>
+
+</html>

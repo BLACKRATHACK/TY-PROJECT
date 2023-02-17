@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:TY PROJECT}/AUDIMUS/db.sqlite3",
+            "name": "db.sqllite3"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

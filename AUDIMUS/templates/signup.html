@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+</head>
+<style>
+  /* Google Fonts - Poppins */
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+  *,
+  *::before,
+  *::after {
+    /*page box in which everything is there*/
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+  }
+
+  body {
+    /*whole body*/
+
+    justify-content: center;
+    align-items: center;
+    background: #ebf0f4;
+  }
+
+  .box {
+    margin-left: 35rem;
+    position: relative;
+    width: 480px;
+    height: 520px;
+    background: #1c1c1c;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 420px;
+    height: 520px;
+    background: linear-gradient(0deg, transparent, var(--mainColor),
+        transparent, var(--mainColor));
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+  }
+
+  .box::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 420px;
+    height: 520px;
+    background: linear-gradient(10deg, transparent, var(--mainColor),
+        transparent, var(--mainColor));
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -3s;
+  }
+
+  @keyframes animate {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .form {
+    position: absolute;
+    inset: 2px;
+    border-radius: 8px;
+    background: #28292d;
+    z-index: 10;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form h2 {
+    color: var(--mainColor);
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+
+
+  .links {
+    /*the box around forget password and signup*/
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .links a:hover {
+    /*hovering on forget password*/
+    color: lawngreen;
+  }
+
+  .links a:nth-child(2) {
+    /*signup login color near forget password*/
+    color: #feda6a;
+  }
+
+  .links a:nth-child(2):hover {
+    /*hovering signup login color near forget password*/
+    color: lawngreen;
+  }
+
+  .submit {
+    /*login signup btn*/
+    border: 1px solid #393f4d;
+    height: 42px;
+    width: 160px;
+    text-align: center;
+    background-color: var(--mainColor);
+    color: #393f4d;
+    font-weight: bold;
+    font-size: 24px;
+    font-family: "Times New Roman";
+    vertical-align: top;
+  }
+
+  .submit:hover {
+    background-color: #515253;
+    color: var(--mainColor);
+    font-weight: bold;
+  }
+
+  .form {
+    /*for username password on login and signup page*/
+    font: 95% arial;
+    max-width: 400px;
+    margin: 10px auto;
+    padding: 16px;
+
+  }
+
+  .form h1,
+  .form a {
+    /*design of 'signup' login*/
+    padding: 20px 0;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Times New Roman";
+    text-align: center;
+    margin: -6px -8px 16px -8px;
+    color: #feda6a
+  }
+
+  .form input[type="text"],
+  .form input[type="password"],
+  .form input[type="date"],
+  .form input[type="datetime"],
+  .form input[type="email"],
+  .form input[type="number"],
+  .form input[type="search"],
+  .form input[type="time"],
+  .form input[type="url"],
+  .form textarea,
+  .form select {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    background: rgb(238, 233, 233);
+    /*for inside color of username and password*/
+    margin-bottom: 4%;
+    border: 8px solid var(--lightTwo);
+    /*BORDER OF  username PASSWORD & its confirmation*/
+    padding: 3%;
+    color: var(--darkOne);
+    /*color of details that user will enter*/
+    font: 95% Arial, Helvetica, sans-serif;
+  }
+
+
+  .form input[type="text"]:focus,
+  .form input[type="password"]:focus,
+  .form input[type="date"]:focus,
+  .form input[type="datetime"]:focus,
+  .form input[type="email"]:focus,
+  .form input[type="number"]:focus,
+  .form input[type="search"]:focus,
+  .form input[type="time"]:focus,
+  .form input[type="url"]:focus,
+  .form textarea:focus,
+  .form select:focus {
+    box-shadow: 0 0 50px transparent;
+    /*color of shadow of box when u r entering details*/
+    padding: 3%;
+    border: 12px solid var(--hoverColor);
+    /*color of border of box when u r entering details*/
+  }
+
+  .site-form span,
+  label {
+    /*color of username, password,its confirmation...etc on login and signup page*/
+    color: #feda6a;
+    font-weight: bold;
+  }
+
+  .errorlist {
+    /*if entered wrong details error will be showed in this color*/
+    color: rgb(208, 13, 13);
+    font-weight: bold;
+  }
+
+  .light {
+    --mainColor: #0b5ce9;
+    /*color of signup and getstarted button*/
+    --hoverColor: #28acd8;
+    /*hovering color of navbars, signup and get started button*/
+    --backgroundColor: #ebf0f4;
+    /*wholepage color*/
+    --darkOne: #312f3a;
+    /*color of welcome...*/
+    --darkTwo: #45424b;
+    /*color of mode change symbol*/
+    --lightOne: #4f4545;
+    /*color of statements below welcome...*/
+    --lightTwo: #aaa;
+    /*color of navbar*/
+  }
+
+  .dark {
+    --mainColor: #4481eb;
+    /*color of signup and getstarted button*/
+    --hoverColor: #04befe;
+    /*hovering color of navbars, signup and get started button*/
+    --backgroundColor: #192e3a;
+    /*wholepage color*/
+    --darkOne: #f3f3f3;
+    /*color of welcome...*/
+    --darkTwo: #fff;
+    /*color of mode change symbol*/
+    --lightOne: #ccc;
+    /*color of statements below welcome...*/
+    --lightTwo: #e7e3e3;
+    /*color of navbar*/
+  }
+
+  .big-wrapper {
+    /*whole page*/
+    position: relative;
+    padding: 1.7rem 0 2rem;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: var(--backgroundColor);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .toggle-btn {
+    /*mode changing btn*/
+    display: inline-block;
+    border: none;
+    background: var(--darkTwo);
+    color: var(--backgroundColor);
+    outline: none;
+    cursor: pointer;
+    margin-left: 3.5rem;
+    height: 39px;
+    width: 39px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    transition: 0.3s;
+  }
+
+  .bottom-area {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    text-align: left;
+    margin-left: -55px;
+    z-index: 10;
+  }
+
+  .toggle-btn i {
+    /*moon pic*/
+    line-height: 39px;
+  }
+
+  .toggle-btn:hover {
+    /*hovering on mode btn*/
+    background: var(--hoverColor);
+  }
+
+  .big-wrapper.light .toggle-btn i:last-child {
+    display: none;
+  }
+
+  .big-wrapper.light .toggle-btn i:first-child {
+    display: block;
+  }
+
+  .big-wrapper.dark .toggle-btn i:last-child {
+    display: block;
+  }
+
+  .big-wrapper.dark .toggle-btn i:first-child {
+    display: none;
+  }
+
+  .copy {
+    /* change from light to dark mode*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    animation: appear 1.2s 1 both;
+  }
+
+  @keyframes appear {
+    0% {
+      clip-path: circle(30% at -25% -25%);
+    }
+
+    100% {
+      clip-path: circle(150% at 0 0);
+    }
+  }
+
+  .container {
+    /*of navbar,welc...,everything*/
+    position: relative;
+    max-width: 81rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 3rem;
+    z-index: 10;
+  }
+</style>
+
+<body>
+  <main>
+    <div class="big-wrapper light">
+      <div class="box">
+        <div class="form">
+          <h2><b>Sign up</b></h2>
+
+          <div class="form-style">
+
+            <form class="site-form" action="." method="post">
+              {% csrf_token %}
+              {{ form }}
+              <br><br>
+              <input class="submit" type="submit" value="Sign Up">
+
+            </form>
+
+          </div>
+          <div class="links">
+            <a href="{% url 'home' %}">Back Home</a>
+            <a href="{% url 'login' %}">Login</a>
+          </div>
+          <script type="text/javascript">
+            document.getElementsByTagName("span")[0].innerHTML = "";
+            document.getElementsByTagName("span")[1].innerHTML = "";
+          </script>
+          <div class="bottom-area">
+            <div class="container">
+              <button class="toggle-btn">
+                <i class="far fa-moon"></i>
+                <i class="far fa-sun"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+
+
+
+
+</body>
+
+</html>
+<!-- JavaScript Files -->
+
+<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+<script>// Select The Elements
+  var toggle_btn;
+  var big_wrapper;
+  var hamburger_menu;
+
+  function declare() {
+    toggle_btn = document.querySelector(".toggle-btn");
+    big_wrapper = document.querySelector(".big-wrapper");
+    hamburger_menu = document.querySelector(".hamburger-menu");
+  }
+
+  const main = document.querySelector("main");
+
+  declare();
+
+  let dark = false;
+
+  function toggleAnimation() {
+    // Clone the wrapper
+    dark = !dark;
+    let clone = big_wrapper.cloneNode(true);
+    if (dark) {
+      clone.classList.remove("light");
+      clone.classList.add("dark");
+    } else {
+      clone.classList.remove("dark");
+      clone.classList.add("light");
+    }
+    clone.classList.add("copy");
+    main.appendChild(clone);
+
+    document.body.classList.add("stop-scrolling");
+
+    clone.addEventListener("animationend", () => {
+      document.body.classList.remove("stop-scrolling");
+      big_wrapper.remove();
+      clone.classList.remove("copy");
+      // Reset Variables
+      declare();
+      events();
+    });
+  }
+
+  function events() {
+    toggle_btn.addEventListener("click", toggleAnimation);
+    hamburger_menu.addEventListener("click", () => {
+      big_wrapper.classList.toggle("active");
+    });
+  }
+
+  events();
+</script>
+
+<script type="text/javascript">
+  document.getElementsByTagName("span")[0].innerHTML = "";
+  document.getElementsByTagName("span")[1].innerHTML = "";
+</script>
